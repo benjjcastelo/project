@@ -33,16 +33,16 @@ import { DataService } from '../data.service';
         ]), {optional:true})
       ])
     ])
-  ]
+  ] 
 })
 export class HomeComponent implements OnInit {
-  itemCount: number=4;
+  itemCount: number;
   btnText: string='Add an Item';
   goalText: string= 'My first life goal';
   goals=[];
   constructor(private _data: DataService) { }
 
-  ngOnInit() {    
+  ngOnInit(){    
     this._data.goal.subscribe(res => this.goals =res);
     this.itemCount=this.goals.length;
     this._data.changeGoal(this.goals);
@@ -56,5 +56,6 @@ export class HomeComponent implements OnInit {
   removeItem(i){
     this.goals.splice(i, 1);
     this._data.changeGoal(this.goals);
+    this.itemCount = this.goals.length-0;
   }
 }
